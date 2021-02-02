@@ -254,3 +254,81 @@ var ball = new Ball(0,0);
 var selector = document.querySelector("select");
 
 
+
+document.querySelector("button").addEventListener(
+    "click",()=>{
+        
+        if(selector.value !== "person"){
+            AI(selector.value)
+        }
+        ball.startgame()
+    }
+)
+
+window.addEventListener("keydown",(e)=>{
+    if(e.code=="Enter"||e.code=="Space"){
+        
+        if(selector.value !== "person"){
+            AI(selector.value)
+        }
+        // AI()
+        ball.startgame()
+    }
+    // console.log(e.code)
+    switch (e.code) {
+        case "ArrowRight":
+        case "Numpad6":
+            console.log("right clicked");
+            green.moveRight()
+            break;
+        case "ArrowLeft":
+        case "Numpad4":
+            console.log("left clicked");
+            green.moveLeft()
+            break;
+        case "ArrowDown":
+        case "Numpad2":
+            console.log("down clicked");
+            green.moveBottom()
+            break;
+        case "ArrowUp":
+        case "Numpad8":
+            console.log("up clicked");
+            green.moveTop()
+            break;
+        
+
+        default:
+            break;
+    }
+    console.log(e.code)
+    switch (e.code) {
+        
+        case "KeyD":
+            console.log("right clicked");
+            red.moveRight()
+            break;
+        
+        case "KeyA":
+            console.log("left clicked");
+            red.moveLeft()
+            break;
+        
+        case "KeyS":
+            console.log("down clicked");
+            red.moveBottom()
+            break;
+        
+        case "KeyW":
+            console.log("up clicked");
+            red.moveTop()
+            break;
+        
+
+        default:
+            break;
+    }
+    // drawRect(e.offsetX,e.offsetY);
+    
+})
+
