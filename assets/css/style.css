@@ -1,0 +1,16 @@
+body{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    
+}
+
+canvas{
+    margin-top: 100px;
+    width:480px;
+     /* height: 480px; */
+    /* background-color: red; */
+    border: solid purple;
+    border-left: solid yellow;
+    border-right: solid yellow;
+}
