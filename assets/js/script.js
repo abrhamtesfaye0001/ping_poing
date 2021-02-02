@@ -223,3 +223,34 @@ class Rect{
 
 
 }
+function AI(level){
+    speed={
+        "easy":100,
+        "medium":50,
+        "hard":10
+    }
+    setInterval(() => {
+        // red.x = ball.x;
+        screenRefresh()
+        red.clear()
+        red.y = ball.y-5;
+        red.borderControl()
+        
+        red.draw()
+
+    }, speed[level]);
+}
+
+function screenRefresh(){
+    c.clearRect(0,0,10,cy)
+}
+
+var green = new Rect(290,0,"green","right")
+var red = new Rect(0,0,"red","left")
+var randx = Math.floor(Math.random()*2)+1
+
+var ball = new Ball(0,0);
+
+var selector = document.querySelector("select");
+
+
