@@ -255,15 +255,15 @@ var selector = document.querySelector("select");
 
 
 
-document.querySelector("button").addEventListener(
-    "click",()=>{
-        
-        if(selector.value !== "person"){
-            AI(selector.value)
-        }
-        ball.startgame()
-    }
-)
+// document.querySelector("button").addEventListener(
+//     "click",()=>{
+//         console.log("the selected value is "+selector.value)
+//         if(selector.value !== "person"){
+//             AI(selector.value)
+//         }
+//         ball.startgame()
+//     }
+// )
 
 window.addEventListener("keydown",(e)=>{
     if(e.code=="Enter"||e.code=="Space"){
