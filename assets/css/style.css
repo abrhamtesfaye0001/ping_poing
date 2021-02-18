@@ -6,11 +6,16 @@ body{
 }
 
 canvas{
-    margin-top: 100px;
+    /* margin-top: 100px; */
+    
     width:480px;
      /* height: 480px; */
     /* background-color: red; */
     border: solid purple;
     border-left: solid yellow;
     border-right: solid yellow;
+}
+
+.player1-score-board{
+ 
 }

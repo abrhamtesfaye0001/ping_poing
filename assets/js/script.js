@@ -1,15 +1,28 @@
-let canvas = document.querySelector("canvas");
+const canvas = document.querySelector("canvas");
 let c = canvas.getContext("2d");
+let playerName1= document.getElementById("player1-name")
+let playerName2= document.getElementById("player2-name")
+let playerScore1 = document.getElementById("player1-score")
+let playerScore2 = document.getElementById("player2-score")
 
 let cx = canvas.width;
 let cy = canvas.height;
 
 // c.fillStyle = "green"
 // c.fillRect(0,0,10,30)
+var score1=0
+var score2=0
 
-
-function announceWinner(winner){
-    document.querySelector("p").innerText = `the winner is: ${winner}`
+function announceWinner(playerScore){
+    if(playerScore == playerScore1 ){
+        score1+=1
+        score = score1
+    }else{
+        score2+=1
+        score = score2
+    }
+    
+    playerScore.innerHTML=`${score}`
 }
 
 class Ball{
@@ -99,12 +112,14 @@ class Ball{
             }else{
                 if(this.isGameOver()==-1){
                     clearInterval(mySetInterval)
-                    announceWinner("you")
+                    
+                    announceWinner(playeScore2)
                     
                 }
                 if(this.isGameOver()==1){
                     clearInterval(mySetInterval)
-                    announceWinner(selector[selector.selectedIndex].innerText)///////////////////////////
+                    announceWinner(playerScore1)
+                    
                 }
             }
             
@@ -117,6 +132,7 @@ class Ball{
         c.clearRect(0,0,cx,cy)
         this.x = Math.random()*(cx-300)+100
         this.y = Math.random()*(cy-300)+100
+        
         
         this.moveDeg()
         
@@ -225,7 +241,7 @@ class Rect{
 }
 function AI(level){
     speed={
-        "easy":100,
+        "easy":250,
         "medium":50,
         "hard":10
     }
@@ -233,7 +249,8 @@ function AI(level){
         // red.x = ball.x;
         screenRefresh()
         red.clear()
-        red.y = ball.y-5;
+        //TODO red.y = ball.y-5; TODO
+        red.y = ball.y;
         red.borderControl()
         
         red.draw()
@@ -267,7 +284,7 @@ var selector = document.querySelector("select");
 
 window.addEventListener("keydown",(e)=>{
     if(e.code=="Enter"||e.code=="Space"){
-        
+        playerName1.innerHTML = `${selector[selector.selectedIndex].innerText}`
         if(selector.value !== "person"){
             AI(selector.value)
         }
