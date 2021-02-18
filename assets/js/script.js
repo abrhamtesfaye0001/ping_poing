@@ -12,17 +12,42 @@ let cy = canvas.height;
 // c.fillRect(0,0,10,30)
 var score1=0
 var score2=0
-
+displayScore()
+function displayScore(){
+    let s1
+    let s2
+    if(!localStorage.getItem("score1")&&!localStorage.getItem("score2")){
+         s1 = 0
+         s2 = 0
+         localStorage.setItem("score1","0")
+         localStorage.setItem("score2","0")
+        console.log("empty storage")
+    }
+    else{
+         s1 = parseInt(localStorage.getItem("score1"))
+         s2 = parseInt(localStorage.getItem("score2"))
+    }
+    score1 = s1
+    score2 = s2
+    playerScore1.innerHTML = `${s1}`
+    playerScore2.innerHTML = `${s2}`
+}
 function announceWinner(playerScore){
     if(playerScore == playerScore1 ){
         score1+=1
+        console.log((Number(localStorage.getItem("score1"))+1))
+        localStorage.setItem("score1",(Number(localStorage.getItem("score1"))+1))
+        localStorage.setItem("score2",score2)
         score = score1
     }else{
         score2+=1
+        localStorage.setItem("score2",(Number(localStorage.getItem("score2"))+1))
+        localStorage.setItem("score1",score1)
         score = score2
     }
     
-    playerScore.innerHTML=`${score}`
+    // playerScore.innerHTML=`${score}`
+    displayScore()
 }
 
 class Ball{
@@ -113,7 +138,7 @@ class Ball{
                 if(this.isGameOver()==-1){
                     clearInterval(mySetInterval)
                     
-                    announceWinner(playeScore2)
+                    announceWinner(playerScore2)
                     
                 }
                 if(this.isGameOver()==1){
@@ -272,19 +297,21 @@ var selector = document.querySelector("select");
 
 
 
-// document.querySelector("button").addEventListener(
-//     "click",()=>{
-//         console.log("the selected value is "+selector.value)
-//         if(selector.value !== "person"){
-//             AI(selector.value)
-//         }
-//         ball.startgame()
-//     }
-// )
+document.querySelector("#clearBtn").addEventListener(
+    "click",()=>{
+        localStorage.setItem("score1",0)
+        localStorage.setItem("score2",0)
+        displayScore()
+    }
+)
+playerName1.innerHTML = `${selector[selector.selectedIndex].innerText}`
+selector.addEventListener("change",()=>{
+    playerName1.innerHTML = `${selector[selector.selectedIndex].innerText}`
+})
 
 window.addEventListener("keydown",(e)=>{
     if(e.code=="Enter"||e.code=="Space"){
-        playerName1.innerHTML = `${selector[selector.selectedIndex].innerText}`
+        
         if(selector.value !== "person"){
             AI(selector.value)
         }
